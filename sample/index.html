@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CKEditor 5 – document editor build – development sample</title>
+    <link rel="stylesheet" href="../dist/style.css" />
+  </head>
+  <body>
+    <h1>CKEditor 5 – document editor build – development sample</h1>
+    <div class="document-editor">
+      <div class="document-editor__toolbar"></div>
+
+      <!-- This will show the save status -->
+      <div id="snippet-autosave-header">
+        <div id="snippet-autosave-status" class="">
+          <div id="snippet-autosave-status_label"></div>
+          <div id="snippet-autosave-status_spinner">
+            <span id="snippet-autosave-status_spinner-label"></span>
+            <span id="snippet-autosave-status_spinner-loader"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="document-editor__editable-container">
+        <div class="document-editor__editable">
+          <p style="text-align: center">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAAA5CAYAAADNwDx/AAAAw3pUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHjabVBBDgMhCLz7ij4BgVV4jtu1SX/Q5xeFbda2kzggQ0Yk9dfzkW4DmDnxVqVoKWBgZcVmiYCjTc7Akyd6DS2v9UQaAlqJLJJfpUT/Wc8fAw/Nsu1iJPcQ9lVQDn/5MkIPNCYa+RFGGkaELuQwaP4tKCr1+oW9wwrxkwaxrGP/3Ktt79jsHULslAmMicQHoHE4UbOkGmcSawTSmbMxE4aZLeTfnk6kN0FhWVxG0gTqAAABhWlDQ1BJQ0MgcHJvZmlsZQAAeJx9kT1Iw0AcxV9TpSoVQTuIOGSoThZERQQXrUIRKoRaoVUHk0s/hCYNSYqLo+BacPBjserg4qyrg6sgCH6AODs4KbpIif9LCi1iPDjux7t7j7t3gFArMc1qGwU03TZTibiYya6IoVeE0IswOjEtM8uYlaQkfMfXPQJ8vYvxLP9zf45uNWcxICASzzDDtInXiSc3bYPzPnGEFWWV+Jx4xKQLEj9yXfH4jXPBZYFnRsx0ao44QiwWWlhpYVY0NeIJ4qiq6ZQvZDxWOW9x1koV1rgnf2E4py8vcZ3mIBJYwCIkiFBQwQZKsBGjVSfFQor24z7+AdcvkUsh1wYYOeZRhgbZ9YP/we9urfz4mJcUjgPtL47zMQSEdoF61XG+jx2nfgIEn4Ervekv14CpT9KrTS16BPRsAxfXTU3ZAy53gP4nQzZlVwrSFPJ54P2MvikL9N0CXateb419nD4AaeoqeQMcHALDBcpe83l3R2tv/55p9PcDemZyqk5I0H8AAA14aVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA0LjQuMC1FeGl2MiI+CiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiCiAgICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICB4bWxuczpHSU1QPSJodHRwOi8vd3d3LmdpbXAub3JnL3htcC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgeG1wTU06RG9jdW1lbnRJRD0iZ2ltcDpkb2NpZDpnaW1wOjJmNzA0YzRlLTMyMjktNGI0MS1hN2U0LTJhOGY5MGYxNTE0NiIKICAgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1ZTgyYTYwOC0wZTFjLTQxZTAtODI4Yy02OThmMzczYTYwYmEiCiAgIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5YjJhOGVlYS01MTY2LTRmYjMtOWQ0Zi00MWRlZTZkNjk4ZWIiCiAgIGRjOkZvcm1hdD0iaW1hZ2UvcG5nIgogICBHSU1QOkFQST0iMi4wIgogICBHSU1QOlBsYXRmb3JtPSJMaW51eCIKICAgR0lNUDpUaW1lU3RhbXA9IjE3MjEzMDQ4ODM5ODczOTgiCiAgIEdJTVA6VmVyc2lvbj0iMi4xMC4zOCIKICAgdGlmZjpPcmllbnRhdGlvbj0iMSIKICAgeG1wOkNyZWF0b3JUb29sPSJHSU1QIDIuMTAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjQ6MDc6MThUMDk6MTQ6NDItMDM6MDAiCiAgIHhtcDpNb2RpZnlEYXRlPSIyMDI0OjA3OjE4VDA5OjE0OjQyLTAzOjAwIj4KICAgPHhtcE1NOkhpc3Rvcnk+CiAgICA8cmRmOlNlcT4KICAgICA8cmRmOmxpCiAgICAgIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiCiAgICAgIHN0RXZ0OmNoYW5nZWQ9Ii8iCiAgICAgIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZjcwZmYzMjktZWQ0Yi00NWRmLWI3OTYtNzM4Nzg5MTM0OGE5IgogICAgICBzdEV2dDpzb2Z0d2FyZUFnZW50PSJHaW1wIDIuMTAgKExpbnV4KSIKICAgICAgc3RFdnQ6d2hlbj0iMjAyNC0wNy0xOFQwOToxNDo0My0wMzowMCIvPgogICAgPC9yZGY6U2VxPgogICA8L3htcE1NOkhpc3Rvcnk+CiAgPC9yZGY6RGVzY3JpcHRpb24+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw/eHBhY2tldCBlbmQ9InciPz5LJPrHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AcSDA4rRdZd4QAAEXVJREFUeNrtXT1z20gSffI5uIQFbngRudllgqsuuEzULzBkaR2xylC0lrWy4D9AQwwuNbVaSV4nC1UxWlsS+QsM5ldlMrtsqeyywxSDq4t4AXuk5ggfw+GHKAldpZJEAIMBOG+6+013zwqmFGtrrwKgAsAGUKTfFh0WALr0dzj6exiKL79EuCOxXryxqb99AKG4OIlmf4+dCv3ZFRens2/feS3fdSRaH7vI5UHKyhSAdAE4DIiaMgSANoBAfPmltWBgBgBesY8EgIq4OOnOEJQt5Z1si4vTYEagLFL7a+zjDgBHtD5G+XB+xOC0ftirAPAxHBscMACnlCsAvvjyS3AHwOQALU+rQa0XOzZZB3GT1Ya4OG3NAJwtAM9jDnVE62MlH84PS55ogrJo/bDXAvBVmbWnlRKA36zN3dDa3LXnCEwvAZggMDlTArMYozG5uFM/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"
+              width="231"
+              height="57"
+            />
+          </p>
+          <p style="text-align: center">
+            <span style="font-family: Arial; font-size: 10pt"
+              ><span
+                class="placeholder ck-widget"
+                title="NOME DA EMPRESA"
+                data-name="NOME DA EMPRESA"
+                data-attr="company_name"
+                data-value="NOME DA EMPRESA"
+                data-is-fixed="1"
+                data-is-solved="0"
+                data-is-block="0"
+                data-options=""
+                contenteditable="false"
+                >NOME DA EMPRESA</span
+              >&nbsp;-&nbsp;<span
+                class="placeholder ck-widget"
+                title="CPF/CNPJ DA EMPRESA"
+                data-name="CPF/CNPJ DA EMPRESA"
+                data-attr="company_cpf_cnpj"
+                data-value="CPF/CNPJ DA EMPRESA"
+                data-is-fixed="1"
+                data-is-solved="0"
+                data-is-block="0"
+                data-options=""
+                contenteditable="false"
+                >CPF/CNPJ DA EMPRESA</span
+              ></span
+            >
+          </p>
+          <p style="text-align: center">&nbsp;</p>
+          <p style="text-align: center">
+            <figure
+              class="placeholder-block ck-widget"
+              title="SERVICES"
+              data-name="SERVICES"
+              data-attr="quoted_services"
+              data-value=""
+              data-is-fixed="1"
+              data-is-solved
+              data-is-block="1"
+              data-options=""
+              contenteditable="false"
+            >
+              <figure>SERVIÇOS COTADOS</figure>
+            </figure>
+          </p>
+          <p>&nbsp;</p>
+          <p>
+            <span style="font-family: Arial; font-size: 12pt"
+              ><strong>Valor Total:</strong>&nbsp;</span
+            >
+            <span
+              class="placeholder ck-widget"
+              title="VALOR TOTAL DO ORÇAMENTO"
+              data-name="VALOR TOTAL DO ORÇAMENTO"
+              data-attr="quoted_total_value"
+              data-value="VALOR TOTAL DO ORÇAMENTO"
+              data-is-fixed="1"
+              data-is-solved="0"
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >VALOR TOTAL DO ORÇAMENTO</span
+            >
+          </p>
+          <p>
+            <span style="font-family: Arial; font-size: 12pt"
+              ><strong>Condições de Pagamento:</strong> 50% no início do serviço
+              e 50% na entrega dos relatórios.</span
+            >
+          </p>
+          <p>&nbsp;</p>
+          <p>
+            <span style="font-family: Arial; font-size: 12pt"
+              >Estamos à disposição para esclarecer qualquer dúvida ou ajustar o
+              orçamento de acordo com suas necessidades específicas.</span
+            >
+          </p>
+          <p>
+            <span style="font-family: Arial; font-size: 12pt"
+              >Fico no aguardo de sua confirmação para darmos início ao
+              processo.</span
+            >
+          </p>
+          <p>
+            <span style="font-family: Arial; font-size: 12pt"
+              >Atenciosamente,</span
+            >
+          </p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>
+            <span
+              class="placeholder ck-widget"
+              title="NOME DA EMPRESA"
+              data-name="NOME DA EMPRESA"
+              data-attr="company_name"
+              data-value="NOME DA EMPRESA"
+              data-is-fixed="1"
+              data-is-solved="0"
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >NOME DA EMPRESA</span
+            >
+          </p>
+          <p>
+            <span
+              class="placeholder ck-widget"
+              title="TELEFONE DA EMPRESA"
+              data-name="TELEFONE DA EMPRESA"
+              data-attr="company_phone"
+              data-value="TELEFONE DA EMPRESA"
+              data-is-fixed="1"
+              data-is-solved="0"
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >TELEFONE DA EMPRESA</span
+            >
+          </p>
+          <p>
+            <span
+              class="placeholder ck-widget"
+              title="EMAIL DO EMPRESA"
+              data-name="EMAIL DO EMPRESA"
+              data-attr="company_email"
+              data-value="EMAIL DO EMPRESA"
+              data-is-fixed="1"
+              data-is-solved="0"
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >EMAIL DO EMPRESA</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="../dist/main.js"></script>
+    <script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
+    <script src="variables.js"></script>
+
+    <script>
+      CustomDecoupledEditor.create(
+        document.querySelector(".document-editor__editable"),
+        {
+          ...CustomDecoupledEditor.editorConfig,
+          variables: variables,
+          autosave: {
+            save(editor) {
+              return saveData(editor.getData());
+            },
+          },
+        }
+      )
+        .then((editor) => {
+          const toolbarContainer = document.querySelector(
+            ".document-editor__toolbar"
+          );
+          toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+          CKEditorInspector.attach(editor);
+          displayStatus(editor);
+          window.editor = editor;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      // Save the data to a fake HTTP server (emulated here with a setTimeout()).
+      function saveData(data) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log("Saved");
+            console.log(data);
+
+            resolve();
+          }, 1000);
+        });
+      }
+
+      // Update the "Status: Saving..." info.
+      function displayStatus(editor) {
+        const pendingActions = editor.plugins.get("PendingActions");
+        const statusIndicator = document.querySelector(
+          "#snippet-autosave-status"
+        );
+        pendingActions.on("change:hasAny", (evt, propertyName, newValue) => {
+          if (newValue) {
+            statusIndicator.classList.add("busy");
+          } else {
+            statusIndicator.classList.remove("busy");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

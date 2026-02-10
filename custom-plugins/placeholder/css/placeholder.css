@@ -1,0 +1,49 @@
+.ck-dropdown.placeholder-dropdown .ck-dropdown__panel {
+	max-height: 250px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.placeholder,
+.placeholder-block {
+	transition: background .2s ease-in-out;
+	background: #ffa94d33;
+	border: 1px solid;
+	border-image: linear-gradient(90deg, rgba(204, 105, 0, 0.4) 0px, rgba(204, 105, 0, 0.4) 5px, rgba(0, 0, 0, 0) 6px, rgba(0, 0, 0, 0) calc(100% - 6px), rgba(204, 105, 0, 0.4) calc(100% - 5px), rgba(204, 105, 0, 0.4));
+	border-image-slice: 1;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.placeholder.placeholder-solved,
+.placeholder-block.placeholder-solved {
+	background: rgba(223, 240, 216, .6);
+	border-image: linear-gradient(90deg, rgba(92, 184, 92, 0.4) 0px, rgba(92, 184, 92, 0.4) 5px, rgba(0, 0, 0, 0) 6px, rgba(0, 0, 0, 0) calc(100% - 6px), rgba(92, 184, 92, 0.4) calc(100% - 5px), rgba(92, 184, 92, 0.4));
+	border-image-slice: 1;
+}
+
+.placeholder-readonly {
+	background: unset !important;
+}
+
+.placeholder-pointer {
+	cursor: pointer;
+}
+
+.placeholder::selection,
+.placeholder-block::selection {
+	display: none;
+}
+
+.placeholder-option-ul li {
+	list-style-type: none;
+}
+
+.placeholder-option-ul li button {
+	cursor: pointer !important;
+}
+
+.placeholder-option-ul li button span {
+	line-height: 10px !important;
+}

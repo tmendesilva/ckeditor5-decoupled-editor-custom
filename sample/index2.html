@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CKEditor 5 – document editor build – development sample</title>
+    <link rel="stylesheet" href="../dist/style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>CKEditor 5 – document editor build – development sample</h1>
+    <div class="document-editor">
+      <div class="document-editor__toolbar"></div>
+
+      <!-- This will show the save status -->
+      <div id="snippet-autosave-header">
+        <div id="snippet-autosave-status" class="">
+          <div id="snippet-autosave-status_label"></div>
+          <div id="snippet-autosave-status_spinner">
+            <span id="snippet-autosave-status_spinner-label"></span>
+            <span id="snippet-autosave-status_spinner-loader"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="document-editor__editable-container">
+        <div class="document-editor__editable" contenteditable="true"></div>
+      </div>
+    </div>
+
+    <script src="../dist/main.js"></script>
+    <!-- <script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script> -->
+    <script src="variables.js"></script>
+
+    <script>
+      CustomDecoupledEditor.create(
+        document.querySelector(".document-editor__editable"),
+        {
+          ...CustomDecoupledEditor.editorConfig,
+          variables: variables,
+          autosave: {
+            save(editor) {
+              return saveData(editor.getData());
+            },
+          },
+        }
+      )
+        .then((editor) => {
+          const toolbarContainer = document.querySelector(
+            ".document-editor__toolbar"
+          );
+          toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+          // CKEditorInspector.attach(editor);
+          displayStatus(editor);
+          window.editor = editor;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      // Save the data to a fake HTTP server (emulated here with a setTimeout()).
+      function saveData(data) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log("Saved");
+            console.log(data);
+
+            resolve();
+          }, 1000);
+        });
+      }
+
+      // Update the "Status: Saving..." info.
+      function displayStatus(editor) {
+        const pendingActions = editor.plugins.get("PendingActions");
+        const statusIndicator = document.querySelector(
+          "#snippet-autosave-status"
+        );
+        pendingActions.on("change:hasAny", (evt, propertyName, newValue) => {
+          if (newValue) {
+            statusIndicator.classList.add("busy");
+          } else {
+            statusIndicator.classList.remove("busy");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
