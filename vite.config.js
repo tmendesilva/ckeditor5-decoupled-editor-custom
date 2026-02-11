@@ -45,6 +45,6 @@ export default {
     // The lowest target is es2015.
     target: "es2015",
     // Generate source maps
-    sourcemap: true,
+    sourcemap: false,
   },
 };
