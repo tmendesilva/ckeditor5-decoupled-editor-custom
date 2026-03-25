@@ -196,12 +196,15 @@ export default class PlaceholderEditing extends Plugin {
       },
       model: (viewElement, conversionApi) => {
         const modelWriter = conversionApi.writer;
+        const isFixedAttr = viewElement.getAttribute("data-is-fixed");
+        const isSolvedAttr = viewElement.getAttribute("data-is-solved");
+        
         const data = {
           name: viewElement.getAttribute("data-name"),
           attr: viewElement.getAttribute("data-attr"),
           value: viewElement.getAttribute("data-value"),
-          isFixed: viewElement.getAttribute("data-is-fixed"),
-          isSolved: viewElement.getAttribute("data-is-solved"),
+          isFixed: isFixedAttr === "true" || isFixedAttr === true || isFixedAttr === "1" || isFixedAttr === 1,
+          isSolved: isSolvedAttr === "true" || isSolvedAttr === true || isSolvedAttr === "1" || isSolvedAttr === 1,
           isBlock: "0",
           options: viewElement.getAttribute("data-options"),
         };
@@ -214,10 +217,10 @@ export default class PlaceholderEditing extends Plugin {
           if (variableFound) {
             if (variableFound.value) {
               data.value = variableFound.value;
-              data.isSolved = 1;
+              data.isSolved = true;
             } else {
               data.value = data.name;
-              data.isSolved = 0;
+              data.isSolved = false;
             }
           }
         }
@@ -277,12 +280,15 @@ export default class PlaceholderEditing extends Plugin {
       },
       model: (viewElement, conversionApi) => {
         const modelWriter = conversionApi.writer;
+        const isFixedAttr = viewElement.getAttribute("data-is-fixed");
+        const isSolvedAttr = viewElement.getAttribute("data-is-solved");
+        
         const data = {
           name: viewElement.getAttribute("data-name"),
           attr: viewElement.getAttribute("data-attr"),
           value: viewElement.getAttribute("data-value"),
-          isFixed: viewElement.getAttribute("data-is-fixed"),
-          isSolved: viewElement.getAttribute("data-is-solved"),
+          isFixed: isFixedAttr === "true" || isFixedAttr === true || isFixedAttr === "1" || isFixedAttr === 1,
+          isSolved: isSolvedAttr === "true" || isSolvedAttr === true || isSolvedAttr === "1" || isSolvedAttr === 1,
           isBlock: "1",
           options: viewElement.getAttribute("data-options"),
         };
@@ -295,10 +301,10 @@ export default class PlaceholderEditing extends Plugin {
           if (variableFound) {
             if (variableFound.value) {
               data.value = variableFound.value;
-              data.isSolved = 1;
+              data.isSolved = true;
             } else {
               data.value = data.name;
-              data.isSolved = 0;
+              data.isSolved = false;
             }
           }
         }
