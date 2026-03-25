@@ -4,11 +4,11 @@
  */
 
 import {
+  ContextualBalloon,
   Plugin,
   toWidget,
   viewToModelPositionOutsideModelElement,
   Widget,
-  ContextualBalloon,
 } from "ckeditor5";
 
 import PlaceholderCommand from "./PlaceholderCommand.js";
@@ -36,7 +36,7 @@ export default class PlaceholderEditing extends Plugin {
           viewElement.hasClass("placeholder") ||
           viewElement.hasClass("placeholder-block")
         );
-      })
+      }),
     );
 
     this._balloon = editor.plugins.get(ContextualBalloon);
@@ -196,15 +196,12 @@ export default class PlaceholderEditing extends Plugin {
       },
       model: (viewElement, conversionApi) => {
         const modelWriter = conversionApi.writer;
-        const isFixedAttr = viewElement.getAttribute("data-is-fixed");
-        const isSolvedAttr = viewElement.getAttribute("data-is-solved");
-        
         const data = {
           name: viewElement.getAttribute("data-name"),
           attr: viewElement.getAttribute("data-attr"),
           value: viewElement.getAttribute("data-value"),
-          isFixed: isFixedAttr === "true" || isFixedAttr === true || isFixedAttr === "1" || isFixedAttr === 1,
-          isSolved: isSolvedAttr === "true" || isSolvedAttr === true || isSolvedAttr === "1" || isSolvedAttr === 1,
+          isFixed: viewElement.getAttribute("data-is-fixed"),
+          isSolved: viewElement.getAttribute("data-is-solved"),
           isBlock: "0",
           options: viewElement.getAttribute("data-options"),
         };
@@ -217,10 +214,10 @@ export default class PlaceholderEditing extends Plugin {
           if (variableFound) {
             if (variableFound.value) {
               data.value = variableFound.value;
-              data.isSolved = true;
+              data.isSolved = 1;
             } else {
               data.value = data.name;
-              data.isSolved = false;
+              data.isSolved = 0;
             }
           }
         }
@@ -254,17 +251,17 @@ export default class PlaceholderEditing extends Plugin {
         };
         const placeholderView = viewWriter.createContainerElement(
           "span",
-          placeholder
+          placeholder,
         );
 
         const innerText = viewWriter.createText(
           placeholder["data-is-solved"]
             ? placeholder["data-value"]
-            : placeholder["data-name"]
+            : placeholder["data-name"],
         );
         viewWriter.insert(
           viewWriter.createPositionAt(placeholderView, 0),
-          innerText
+          innerText,
         );
 
         const element = toWidget(placeholderView, viewWriter);
@@ -280,15 +277,12 @@ export default class PlaceholderEditing extends Plugin {
       },
       model: (viewElement, conversionApi) => {
         const modelWriter = conversionApi.writer;
-        const isFixedAttr = viewElement.getAttribute("data-is-fixed");
-        const isSolvedAttr = viewElement.getAttribute("data-is-solved");
-        
         const data = {
           name: viewElement.getAttribute("data-name"),
           attr: viewElement.getAttribute("data-attr"),
           value: viewElement.getAttribute("data-value"),
-          isFixed: isFixedAttr === "true" || isFixedAttr === true || isFixedAttr === "1" || isFixedAttr === 1,
-          isSolved: isSolvedAttr === "true" || isSolvedAttr === true || isSolvedAttr === "1" || isSolvedAttr === 1,
+          isFixed: viewElement.getAttribute("data-is-fixed"),
+          isSolved: viewElement.getAttribute("data-is-solved"),
           isBlock: "1",
           options: viewElement.getAttribute("data-options"),
         };
@@ -301,10 +295,10 @@ export default class PlaceholderEditing extends Plugin {
           if (variableFound) {
             if (variableFound.value) {
               data.value = variableFound.value;
-              data.isSolved = true;
+              data.isSolved = 1;
             } else {
               data.value = data.name;
-              data.isSolved = false;
+              data.isSolved = 0;
             }
           }
         }
@@ -338,7 +332,7 @@ export default class PlaceholderEditing extends Plugin {
         };
         const placeholderView = viewWriter.createContainerElement(
           "figure",
-          placeholderBlock
+          placeholderBlock,
         );
 
         const uiElement = viewWriter.createUIElement(
@@ -350,11 +344,11 @@ export default class PlaceholderEditing extends Plugin {
               ? placeholderBlock["data-value"]
               : placeholderBlock["data-name"];
             return domElement;
-          }
+          },
         );
         viewWriter.insert(
           viewWriter.createPositionAt(placeholderView, 0),
-          uiElement
+          uiElement,
         );
 
         const element = toWidget(placeholderView, viewWriter);

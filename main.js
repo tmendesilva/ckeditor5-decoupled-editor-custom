@@ -61,6 +61,7 @@ import GeminiUI from "./custom-plugins/gemini/geminiui.js";
 import Placeholder from "./custom-plugins/placeholder/src/Placeholder.js";
 
 import translations from "ckeditor5/translations/pt.js";
+import "./custom-translations.js";
 
 import "ckeditor5/ckeditor5.css";
 
@@ -283,7 +284,7 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
         },
       ],
     },
-    placeholder: "Type or paste your content here!",
+    placeholder: "Digite ou cole o seu conteúdo aqui.",
     table: {
       contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"],
     },

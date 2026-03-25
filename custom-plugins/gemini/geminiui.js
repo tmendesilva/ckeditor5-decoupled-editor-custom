@@ -25,9 +25,9 @@ export default class GeminiUI extends Plugin {
       const command = editor.commands.get("generateGemini");
 
       view.set({
-        label: t("Artificial Intelligence"),
+        label: t("Gerar conteúdo com IA"),
         tooltip: true,
-        class: "ck-gemini-button",
+        class: "ck-gemini-button bg-light",
       });
 
       view

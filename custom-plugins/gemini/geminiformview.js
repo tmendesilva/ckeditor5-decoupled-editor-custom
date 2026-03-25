@@ -1,8 +1,8 @@
 import {
-  View,
-  LabeledFieldView,
-  createLabeledInputText,
   ButtonView,
+  LabeledFieldView,
+  View,
+  createLabeledInputText,
   submitHandler,
 } from "ckeditor5";
 
@@ -10,9 +10,14 @@ export default class GeminiFormView extends View {
   constructor(locale) {
     super(locale);
 
+    const t = locale.t;
+
     this.setInputView = this._createInputView();
-    this.saveButtonView = this._createButton("Generate", "ck-button-action");
-    this.cancelButtonView = this._createButton("Cancel", "ck-button-cancel");
+    this.saveButtonView = this._createButton(t("Gerar"), "ck-button-action");
+    this.cancelButtonView = this._createButton(
+      t("Cancelar"),
+      "ck-button-cancel",
+    );
 
     this.set("isExecuting", false);
     this.saveButtonView
@@ -51,7 +56,7 @@ export default class GeminiFormView extends View {
     const locale = this.locale;
     const labeledInput = new LabeledFieldView(locale, createLabeledInputText);
 
-    labeledInput.label = "Ask Gemini:";
+    labeledInput.label = "Qual tipo de documento deseja criar?";
 
     return labeledInput;
   }

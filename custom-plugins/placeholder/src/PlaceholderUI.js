@@ -30,6 +30,7 @@ export default class PlaceholderUI extends Plugin {
         icon: placeholderIcon,
         label: t("Variáveis"),
         tooltip: true,
+        class: "bg-light",
       });
 
       const variables = editor.config.get("variables") || [];
