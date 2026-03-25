@@ -58,6 +58,8 @@ import {
 // Custom plugins
 import CustomFontFamilyUI from "./custom-plugins/custom-font-ui/src/CustomFontFamilyUI.js";
 import CustomFontSizeUI from "./custom-plugins/custom-font-ui/src/CustomFontSizeUI.js";
+import GeminiEditing from "./custom-plugins/gemini/geminiediting.js";
+import GeminiUI from "./custom-plugins/gemini/geminiui.js";
 import Placeholder from "./custom-plugins/placeholder/src/Placeholder.js";
 
 import translations from "ckeditor5/translations/pt.js";
@@ -91,21 +93,23 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
         "italic",
         "underline",
         "|",
-        "link",
-        "insertTable",
-        "blockQuote",
-        "|",
         "alignment:left",
         "alignment:center",
         "alignment:right",
         "alignment:justify",
+        "|",
+        "link",
+        "insertTable",
+        "blockQuote",
+        "|",
+        "gemini",
+        "placeholder",
         "|",
         "bulletedList",
         "numberedList",
         "todoList",
         "outdent",
         "indent",
-        "placeholder",
       ],
       shouldNotGroupWhenFull: false,
     },
@@ -163,6 +167,8 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
       CustomFontSizeUI,
       CustomFontFamilyUI,
       Placeholder,
+      GeminiEditing,
+      GeminiUI,
     ],
     balloonToolbar: [
       "bold",
@@ -241,7 +247,7 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
           "editor-container",
           "editor-container_document-editor",
           "editor-container_include-fullscreen",
-          "main-container"
+          "main-container",
         ),
     },
     image: {

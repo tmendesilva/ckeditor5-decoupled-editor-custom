@@ -13,8 +13,8 @@ var variables = [
     attr: "customer_neighborhood",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "Centro",
     options: null,
   },
   {
@@ -31,8 +31,8 @@ var variables = [
     attr: "customer_postalcode",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "01001-000",
     options: null,
   },
   {
@@ -49,8 +49,8 @@ var variables = [
     attr: "customer_city",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "São Paulo",
     options: null,
   },
   {
@@ -67,8 +67,8 @@ var variables = [
     attr: "customer_document",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "123.456.789-00",
     options: null,
   },
   {
@@ -85,8 +85,8 @@ var variables = [
     attr: "customer_birthdate",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "15/05/1985",
     options: null,
   },
   {
@@ -94,8 +94,8 @@ var variables = [
     attr: "company_email",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "contato@empresa.com.br",
     options: null,
   },
   {
@@ -104,7 +104,7 @@ var variables = [
     is_fixed: true,
     is_block: false,
     is_solved: true,
-    value: "",
+    value: "cliente@exemplo.com",
     options: null,
   },
   {
@@ -122,7 +122,7 @@ var variables = [
     is_fixed: true,
     is_block: false,
     is_solved: true,
-    value: ", , ",
+    value: "Rua das Flores, 123",
     options: null,
   },
   {
@@ -139,8 +139,8 @@ var variables = [
     attr: "customer_state",
     is_fixed: true,
     is_block: false,
-    is_solved: false,
-    value: "",
+    is_solved: true,
+    value: "SP",
     options: null,
   },
   {
@@ -158,7 +158,7 @@ var variables = [
     is_fixed: true,
     is_block: false,
     is_solved: true,
-    value: "CLIENTE SEM CPF",
+    value: "CLIENTE DE TESTE",
     options: null,
   },
   {
@@ -168,7 +168,7 @@ var variables = [
     is_block: true,
     is_solved: true,
     value:
-      '\n<table>\n    <thead>\n    <tr>\n        <th style="width: 60%">Serviço</th>\n        <th style="text-align: center">Quantidade</th>\n        <th style="text-align: right">Preço</th>\n    </tr>\n    </thead>\n    <tbody>\n            <tr>\n            <td>\n                <p>C2 - Desenvolvimento APP (Exemplo)</p>\n                <p style="font">\n                    <span style="font-size:10pt;">Desenvolvimento de aplicativo móvel (Android/iOS) para o projeto</span>\n                </p>\n            </td>\n            <td style="text-align: center">1</td>\n            <td style="text-align: right">R$ 4.599,00</td>\n        </tr>\n        </tbody>\n</table>\n',
+      '\n<table>\n    <thead>\n    <tr>\n        <th style="width: 60%">Serviço</th>\n        <th style="text-align: center">Quantidade</th>\n        <th style="text-align: right">Preço</th>\n    </tr>\n    </thead>\n    <tbody>\n            <tr>\n            <td>\n                <p>C2 - Desenvolvimento APP (Exemplo)</p>\n                <p style="font">\n                    <span style="font-size:10pt;">Desenvolvimento de aplicativo móvel (Android/iOS) para o projeto</span>\n                </p>\n            </td>\n            <td style="text-align: center">1</td>\n            <td style="text-align: right">R$ 4.599,00</td>\n        </tr>\n        </tbody>\n</table>\n',
     options: null,
   },
   {

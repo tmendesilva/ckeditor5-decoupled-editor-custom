@@ -1,16 +1,15 @@
 {
   "name": "ckeditor5-decoupled-editor-custom",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "vite",
+    "start": "vite --open /sample/index.html",
     "build": "vite build"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-inspector": "^5.0.0",
-    "ckeditor5": "47.547.0",
-    "vite": "^7.0.0"
-  },
-  "dependencies": {
-    "@ckeditor/vite-plugin-ckeditor5": "^0.1.3"
+    "ckeditor5": "^47.1.0",
+    "@ckeditor/vite-plugin-ckeditor5": "^0.1.3",
+    "vite": "^8.0.2"
   }
 }

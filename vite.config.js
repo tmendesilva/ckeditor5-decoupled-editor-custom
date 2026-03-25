@@ -2,7 +2,7 @@ import path from "path";
 
 export default {
   server: {
-    open: "index.html",
+    open: "/sample/index.html",
   },
   build: {
     // Set the output directory

@@ -83,3 +83,66 @@
 	max-width: 0;
 	min-width: 0;
 }
+
+/* Gemini Form Styles */
+.ck.ck-gemini-form {
+	padding: var(--ck-spacing-large);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ck-spacing-medium);
+	min-width: 300px;
+}
+
+.ck.ck-gemini-form .ck-labeled-field-view {
+	margin-bottom: var(--ck-spacing-medium);
+}
+
+.ck.ck-gemini-textarea {
+	min-height: 80px;
+	resize: vertical;
+}
+
+.ck.ck-gemini-form .ck-button {
+	justify-content: center;
+}
+
+/* Spinner Animation */
+.ck-icon_spinning {
+	animation: ck-icon-spin 1s linear infinite;
+}
+
+@keyframes ck-icon-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Gemini Overlay */
+.ck-gemini-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border-radius: var(--ck-border-radius);
+}
+
+.ck-gemini-spinner {
+    width: 48px;
+    height: 48px;
+    color: var(--ck-color-base-action);
+}
+
+.ck-gemini-spinner svg {
+    width: 100%;
+    height: 100%;
+    animation: ck-icon-spin 1s linear infinite;
+}
