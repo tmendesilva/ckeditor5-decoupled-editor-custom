@@ -58,8 +58,9 @@ export default ({ mode }) => {
                 drop_debugger: true,
               },
               mangle: {
-                // Mangle variable names for smaller bundle
+                // Mangle variable names but preserve the global library name
                 toplevel: true,
+                reserved: ["CustomDecoupledEditor"], // Don't mangle the global variable
               },
             }
           : {},
