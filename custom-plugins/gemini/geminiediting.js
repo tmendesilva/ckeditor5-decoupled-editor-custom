@@ -50,12 +50,10 @@ class GeminiCommand extends Command {
       ? `${prompt}\n\nContext:\n${selectedText}${variablesContext}`
       : `${selectedText}${variablesContext}`;
 
-    const API_URL = import.meta.env.VITE_GEMINI_URL;
+    const API_URL = editor.config.get("promptApiUrl");
 
     if (!API_URL) {
-      console.error(
-        "Gemini API URL is missing. Please provide it in .env file.",
-      );
+      console.error("Prompt API URL is missing.");
       return;
     }
 
@@ -69,6 +67,7 @@ class GeminiCommand extends Command {
       }),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${editor.config.get("user")}`,
       },
     })
       .then(async (response) => {
@@ -119,14 +118,30 @@ class GeminiCommand extends Command {
               variables.forEach((variable) => {
                 const escapedAttr = variable.attr.replace(
                   /[.*+?^${}()|[\]\\]/g,
-                  "\\$&",
+                  "\\$&"
                 );
                 // Match exact {attr} format
                 const regex = new RegExp(`\\{${escapedAttr}\\}`, "g");
 
                 const spanHtml = variable.is_block
-                  ? `<figure class="placeholder-block" data-is-block="${variable.is_block}" data-name="${variable.name}" data-attr="${variable.attr}" data-value="${variable.value || ""}" data-is-fixed="${variable.is_fixed}" data-is-solved="${variable.is_solved}" data-options="${variable.options || ""}"></figure>`
-                  : `<span class="placeholder" data-is-block="${variable.is_block}" data-name="${variable.name}" data-attr="${variable.attr}" data-value="${variable.value || ""}" data-is-fixed="${variable.is_fixed}" data-is-solved="${variable.is_solved}" data-options="${variable.options || ""}"></span>`;
+                  ? `<figure class="placeholder-block" data-is-block="${
+                      variable.is_block
+                    }" data-name="${variable.name}" data-attr="${
+                      variable.attr
+                    }" data-value="${variable.value || ""}" data-is-fixed="${
+                      variable.is_fixed
+                    }" data-is-solved="${variable.is_solved}" data-options="${
+                      variable.options || ""
+                    }"></figure>`
+                  : `<span class="placeholder" data-is-block="${
+                      variable.is_block
+                    }" data-name="${variable.name}" data-attr="${
+                      variable.attr
+                    }" data-value="${variable.value || ""}" data-is-fixed="${
+                      variable.is_fixed
+                    }" data-is-solved="${variable.is_solved}" data-options="${
+                      variable.options || ""
+                    }"></span>`;
 
                 textToParse = textToParse.replace(regex, spanHtml);
               });
@@ -145,7 +160,7 @@ class GeminiCommand extends Command {
               // Insert the newly parsed content at the original position
               lastInsertedRange = editor.model.insertContent(
                 modelFragment,
-                insertPosition,
+                insertPosition
               );
 
               // update insertPosition to the start of the newly inserted content
