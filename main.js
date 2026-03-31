@@ -48,6 +48,8 @@ import {
   Superscript,
   Table,
   TableCaption,
+  TableCellProperties,
+  TableProperties,
   TableToolbar,
   TextTransformation,
   TodoList,
@@ -155,6 +157,8 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
       Table,
       TableCaption,
       TableToolbar,
+      TableCellProperties,
+      TableProperties,
       TextTransformation,
       TodoList,
       Underline,
@@ -286,7 +290,13 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
     },
     placeholder: "Digite ou cole o seu conteúdo aqui.",
     table: {
-      contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"],
+      contentToolbar: [
+        "tableColumn",
+        "tableRow",
+        "mergeTableCells",
+        "tableCellProperties",
+        "tableProperties",
+      ],
     },
     translations: [translations],
   };
