@@ -21,6 +21,7 @@ import {
   FontFamily,
   FontSize,
   Fullscreen,
+  Heading,
   HorizontalLine,
   ImageBlock,
   ImageCaption,
@@ -78,8 +79,6 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
       items: [
         "undo",
         "redo",
-        "|",
-        "heading",
         "|",
         "fontFamilyDropdown",
         "|",
@@ -159,6 +158,7 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
       TextTransformation,
       TodoList,
       Underline,
+      Heading,
 
       // Custom
       CustomFontSizeUI,
@@ -244,7 +244,7 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
           "editor-container",
           "editor-container_document-editor",
           "editor-container_include-fullscreen",
-          "main-container",
+          "main-container"
         ),
     },
     image: {
