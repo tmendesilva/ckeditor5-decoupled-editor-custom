@@ -1,185 +1,133 @@
-body {
-	max-width: 1000px;
-	margin: 20px auto;
+:root {
+  --ck-z-default: 100;
+  --ck-z-panel: calc(var(--ck-z-default) + 999);
+  --ck-z-modal: calc(var(--ck-z-default) + 999);
 }
-
+.ck-body-wrapper {
+  z-index: 10000;
+}
+.ck-content .table {
+  width: auto;
+}
 .document-editor,
 .toolbar-container {
-	position: relative;
-	border: 1px solid #ddd;
-	background: #eee;
+  position: relative;
+  border: 1px solid #ddd;
+  background: #eee;
+  color: #000;
 }
-
-.toolbar-container {
-	padding: 1em;
-}
-
-.document-editor {
-	padding: 3em;
-	overflow-y: hidden;
-}
-
-/* Set the default font for the "page" of the content. */
-.document-editor .ck-content,
-.document-editor .ck-heading-dropdown .ck-list .ck-button__label {
-	font: 16px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.document-editor .ck-content {
-	min-height: 21cm;
-	padding: 2em;
-	border: 1px #D3D3D3 solid;
-	border-radius: var(--ck-border-radius);
-	background: white;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.document-editor .document-editor__editable-container {
-	padding: calc(2 * var(--ck-spacing-large));
-	background: var(--ck-color-base-foreground);
-
-	/* Make it possible to scroll the "page" of the edited content. */
-	overflow-y: scroll;
-	max-height: 600px;
-}
-
-.document-editor .document-editor__editable-container .ck-editor__editable {
-	/* Set the dimensions of the "page". */
-	width: 15.8cm;
-	min-height: 21cm;
-
-	/* Keep the "page" off the boundaries of the container. */
-	padding: 1cm 2cm 2cm;
-
-	border: 1px hsl(0, 0%, 82.7%) solid;
-	border-radius: var(--ck-border-radius);
-	background: white;
-
-	/* The "page" should cast a slight shadow (3D illusion). */
-	box-shadow: 0 0 5px hsla(0, 0%, 0%, .1);
-
-	/* Center the "page". */
-	margin: 0 auto;
-}
-
-.document-editor__editable-container .ck-editor__editable_inline p {
-	margin: 0;
-}
-
 .document-editor .document-editor__toolbar .ck-toolbar .ck.ck-list__item {
-	line-height: 10px;
+  line-height: 20px;
 }
-
-.document-editor .document-editor__toolbar .ck-toolbar .ck.ck-list__item .ck-button.ck-button_with-text,
-.document-editor .document-editor__toolbar .ck-toolbar .ck.ck-list__item .ck-button.ck-button_with-text .ck.ck-button__label {
-	padding: 2px 5px;
-	font-size: 1em;
+.document-editor
+  .document-editor__toolbar
+  .ck-toolbar
+  .ck.ck-list__item
+  .ck-button.ck-button_with-text {
+  padding: 2px 5px;
+  font-size: 0.8em;
 }
-
-.document-editor .document-editor__toolbar .ck-toolbar .ck.ck-list__item .ck-button .ck-button__label {
-	line-height: 1.2em;
+.document-editor
+  .document-editor__toolbar
+  .ck-toolbar
+  .ck.ck-list__item
+  .ck-button.ck-button_with-text,
+.document-editor
+  .document-editor__toolbar
+  .ck-toolbar
+  .ck.ck-list__item
+  .ck-button.ck-button_with-text
+  .ck.ck-button__label {
+  padding: 2px 5px;
+  font-size: 1.1em;
 }
-
-.document-editor .document-editor__toolbar .ck-toolbar .ck-dropdown.ck-font-size-dropdown .ck-button.ck-dropdown__button .ck-button__label {
-	width: auto;
+.document-editor
+  .document-editor__toolbar
+  .ck-toolbar
+  .ck.ck-list__item
+  .ck-button
+  .ck-button__label {
+  line-height: 1.2em;
 }
-
-.document-editor .document-editor__toolbar .ck.ck-toolbar > .ck-toolbar__items > :not(.ck-toolbar__line-break),
-.document-editor .document-editor__toolbar .ck.ck-toolbar > .ck.ck-toolbar__grouped-dropdown {
-	margin: 0;
+.document-editor
+  .document-editor__toolbar
+  .ck-toolbar
+  .ck-dropdown.ck-font-size-dropdown
+  .ck-button.ck-dropdown__button
+  .ck-button__label {
+  width: auto;
 }
-
-/*Autosave*/
-#snippet-autosave-header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: var(--ck-color-toolbar-background);
-	border: 1px solid var(--ck-color-toolbar-border);
-	padding: 5px;
-	border-radius: var(--ck-border-radius);
-	/*margin-top: -1.5em;*/
-	border-top: 0;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	font-family: "Arial", sans-serif;
-	font-size: 0.8em;
-	height: 20px;
+.document-editor
+  .document-editor__toolbar
+  .ck.ck-toolbar
+  > .ck-toolbar__items
+  > :not(.ck-toolbar__line-break),
+.document-editor
+  .document-editor__toolbar
+  .ck.ck-toolbar
+  > .ck.ck-toolbar__grouped-dropdown {
+  margin: 0;
 }
-
-#snippet-autosave-status_spinner {
-	display: flex;
-	align-items: center;
-	position: relative;
+.toolbar-container {
+  padding: 1em;
 }
-
-#snippet-autosave-status_spinner-label {
-	position: relative;
+.document-editor .ck-content {
+  border: 1px #d3d3d3 solid;
+  border-radius: var(--ck-border-radius);
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-
-#snippet-autosave-status_spinner-label::after {
-	content: 'Todas alterações estão salvas!';
-	color: green;
-	display: inline-block;
-	margin-right: var(--ck-spacing-medium);
+.document-editor .document-editor__editable-container {
+  padding: calc(2 * var(--ck-spacing-large));
+  background: var(--ck-color-base-foreground);
+  overflow-y: auto;
+  height: calc(100vh - 400px);
 }
-
-/* During "Saving" display spinner and change content of label. */
-#snippet-autosave-status.busy #snippet-autosave-status_spinner-label::after {
-	content: 'Salvando...';
-	color: orange;
+.document-editor .document-editor__editable-container .ck-editor__editable {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  border: 1px hsl(0, 0%, 82.7%) solid;
+  border-radius: var(--ck-border-radius);
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
-
-#snippet-autosave-status.busy #snippet-autosave-status_spinner-loader {
-	display: block;
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	border-top: 3px solid hsl(0, 0%, 70%);
-	border-right: 2px solid transparent;
-	animation: autosave-status-spinner 1s linear infinite;
+.document-editor
+  .document-editor__editable-container
+  .ck-editor__editable
+  table
+  tr
+  th,
+.document-editor
+  .document-editor__editable-container
+  .ck-editor__editable
+  table
+  tr
+  td {
+  padding: 5px;
 }
-
-#snippet-autosave-status,
-#snippet-autosave-server {
-	display: flex;
-	align-items: center;
+.document-editor__editable-container .ck-editor__editable_inline p {
+  margin: 0;
 }
-
-#snippet-autosave-server_label,
-#snippet-autosave-status_label {
-	font-weight: bold;
-	margin-right: var(--ck-spacing-medium);
+#snippet-autosave-status #snippet-autosave-saved {
+  display: block;
 }
-
-#snippet-autosave + .ck.ck-editor .ck-editor__editable {
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
+#snippet-autosave-status #snippet-autosave-saving {
+  display: none;
 }
-
-#snippet-autosave-lag {
-	padding: 4px;
+#snippet-autosave-status.busy #snippet-autosave-saved {
+  display: none;
 }
-
-#snippet-autosave-console {
-	max-height: 300px;
-	overflow: auto;
-	white-space: normal;
-	background: #2b2c26;
-	transition: background-color 500ms;
+#snippet-autosave-status.busy #snippet-autosave-saving {
+  display: block;
 }
-
-#snippet-autosave-console.updated {
-	background: green;
+#snippet-autosave-status.busy #snippet-autosave-saving svg#h-animated {
+  max-height: 12pt;
 }
-
 .ck.ck-balloon-panel.ck-powered-by-balloon .ck.ck-powered-by {
-    display: none;
+  display: none;
 }
-
-@keyframes autosave-status-spinner {
-	to {
-		transform: rotate(360deg);
-	}
+.placeholder {
+  opacity: 1;
 }
-/*Autosave*/

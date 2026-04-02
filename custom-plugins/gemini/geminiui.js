@@ -5,6 +5,7 @@ import {
   clickOutsideHandler,
 } from "ckeditor5";
 import GeminiFormView from "./geminiformview.js";
+import "./theme/css/gemini.css";
 import sparklesIcon from "./theme/icons/sparkles.svg?raw";
 import spinnerIcon from "./theme/icons/spinner.svg?raw";
 
@@ -33,7 +34,7 @@ export default class GeminiUI extends Plugin {
       view
         .bind("icon")
         .to(command, "isExecuting", (isExecuting) =>
-          isExecuting ? spinnerIcon : sparklesIcon,
+          isExecuting ? spinnerIcon : sparklesIcon
         );
       view
         .bind("isEnabled")
@@ -43,7 +44,7 @@ export default class GeminiUI extends Plugin {
       view.iconView
         .bind("class")
         .to(command, "isExecuting", (isExecuting) =>
-          isExecuting ? "ck-icon_spinning" : "",
+          isExecuting ? "ck-icon_spinning" : ""
         );
 
       // Central Loading Overlay

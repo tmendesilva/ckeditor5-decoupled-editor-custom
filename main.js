@@ -3,6 +3,8 @@
  * https://ckeditor.com/ckeditor-5/builder/#installation/NoDgNARATAdAnDAjBSBWKBmA7NuiAMOAbBvoogCxFFSVH75VFaJapxEGoEMgoQAHAC4oMYYIjCTpUsPgC6kCgCMMAUxUATCPKA==
  */
 
+import "ckeditor5/ckeditor5.css";
+
 import {
   Alignment,
   AutoImage,
@@ -65,10 +67,6 @@ import Placeholder from "./custom-plugins/placeholder/src/Placeholder.js";
 
 import translations from "ckeditor5/translations/pt.js";
 import "./custom-translations.js";
-
-import "ckeditor5/ckeditor5.css";
-
-import "./style.css";
 
 export default class CustomDecoupledEditor extends DecoupledEditor {
   /**

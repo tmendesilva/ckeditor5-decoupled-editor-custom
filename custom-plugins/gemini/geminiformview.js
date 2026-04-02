@@ -2,7 +2,7 @@ import {
   ButtonView,
   LabeledFieldView,
   View,
-  createLabeledInputText,
+  createLabeledTextarea,
   submitHandler,
 } from "ckeditor5";
 
@@ -16,7 +16,7 @@ export default class GeminiFormView extends View {
     this.saveButtonView = this._createButton(t("Gerar"), "ck-button-action");
     this.cancelButtonView = this._createButton(
       t("Cancelar"),
-      "ck-button-cancel",
+      "ck-button-cancel"
     );
 
     this.set("isExecuting", false);
@@ -24,10 +24,17 @@ export default class GeminiFormView extends View {
       .bind("isEnabled")
       .to(this, "isExecuting", (isExecuting) => !isExecuting);
 
-    this.childViews = this.createCollection([
-      this.setInputView,
-      this.saveButtonView,
+    // Create separate collections for input and buttons
+    this.inputViews = this.createCollection([this.setInputView]);
+
+    this.buttonViews = this.createCollection([
       this.cancelButtonView,
+      this.saveButtonView,
+    ]);
+
+    this.childViews = this.createCollection([
+      this.inputViews,
+      this.buttonViews,
     ]);
 
     this.setTemplate({
@@ -36,7 +43,22 @@ export default class GeminiFormView extends View {
         class: ["ck", "ck-gemini-form"],
         tabindex: "-1",
       },
-      children: this.childViews,
+      children: [
+        {
+          tag: "div",
+          attributes: {
+            class: ["ck-gemini-form__input-group"],
+          },
+          children: this.inputViews,
+        },
+        {
+          tag: "div",
+          attributes: {
+            class: ["ck-gemini-form__button-group"],
+          },
+          children: this.buttonViews,
+        },
+      ],
     });
   }
 
@@ -54,7 +76,7 @@ export default class GeminiFormView extends View {
 
   _createInputView() {
     const locale = this.locale;
-    const labeledInput = new LabeledFieldView(locale, createLabeledInputText);
+    const labeledInput = new LabeledFieldView(locale, createLabeledTextarea);
 
     labeledInput.label = "Qual tipo de documento deseja criar?";
 
@@ -73,6 +95,7 @@ export default class GeminiFormView extends View {
     view.extendTemplate({
       attributes: {
         class: className,
+        type: className === "ck-button-action" ? "submit" : "button",
       },
     });
 

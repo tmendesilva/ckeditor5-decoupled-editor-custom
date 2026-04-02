@@ -1,0 +1,123 @@
+/* Gemini Form Styles */
+.ck.ck-gemini-form {
+  padding: var(--ck-spacing-large) !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ck-spacing-medium);
+  min-width: 500px;
+}
+
+/* Input Group Styles */
+.ck-gemini-form__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ck-spacing-small);
+}
+
+.ck.ck-gemini-form .ck-textarea {
+  width: 100%;
+  border-radius: var(--ck-border-radius);
+  border: 1px solid var(--ck-color-base-border);
+  padding: var(--ck-spacing-medium);
+  font-size: var(--ck-font-size-normal);
+  transition: border-color 0.2s ease;
+  line-height: 1.5;
+}
+
+.ck.ck-gemini-form .ck-input-text:focus {
+  border-color: var(--ck-color-base-action);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--ck-color-base-action-rgb), 0.2);
+}
+
+.ck.ck-gemini-form .ck-labeled-field-view {
+  margin-bottom: 0;
+}
+
+.ck.ck-gemini-form .ck-labeled-field-view__label {
+  font-weight: 600;
+  color: var(--ck-color-base-text);
+  margin-bottom: var(--ck-spacing-small);
+}
+
+/* Button Group Styles */
+.ck-gemini-form__button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ck-spacing-medium);
+  margin-top: var(--ck-spacing-medium);
+  padding-top: var(--ck-spacing-medium);
+  border-top: 1px solid var(--ck-color-base-border);
+}
+
+.ck.ck-gemini-form .ck-button {
+  justify-content: center;
+  min-width: 100px;
+  border-radius: var(--ck-border-radius);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ck.ck-gemini-form .ck-button .ck-button__label {
+  text-align: center;
+}
+
+.ck.ck-gemini-form .ck-button-action {
+  background-color: var(--ck-color-base-action);
+  color: var(--ck-color-base-background);
+  border: 1px solid var(--ck-color-base-action);
+}
+
+.ck.ck-gemini-form .ck-button-cancel {
+  background-color: var(--ck-color-base-background);
+  color: var(--ck-color-base-text);
+  border: 1px solid var(--ck-color-base-border);
+}
+
+.ck.ck-gemini-form .ck-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner Animation */
+.ck-icon_spinning {
+  animation: ck-icon-spin 1s linear infinite;
+}
+
+@keyframes ck-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gemini Overlay */
+.ck-gemini-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  border-radius: var(--ck-border-radius);
+}
+
+.ck-gemini-spinner {
+  width: 48px;
+  height: 48px;
+  color: var(--ck-color-base-action);
+}
+
+.ck-gemini-spinner svg {
+  width: 100%;
+  height: 100%;
+  animation: ck-icon-spin 1s linear infinite;
+}

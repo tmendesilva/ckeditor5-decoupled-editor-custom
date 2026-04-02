@@ -267,6 +267,18 @@
     "@ckeditor/ckeditor5-ui" "48.0.0"
     "@ckeditor/ckeditor5-undo" "48.0.0"
 
+"@ckeditor/ckeditor5-export-pdf@^48.0.0":
+  version "48.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-export-pdf/-/ckeditor5-export-pdf-48.0.0.tgz#0425c5d19ec413a061b5942a40c7b29a4f8198a8"
+  integrity sha512-YheJ15+9RtLKXb2Gcjg2NKdqOfPifKj3fIeXAjlOcxzykKSM1Y9hhYPBPrnE5eooeCu2ANQCoAifSEaw+b2b5w==
+  dependencies:
+    "@ckeditor/ckeditor5-cloud-services" "48.0.0"
+    "@ckeditor/ckeditor5-core" "48.0.0"
+    "@ckeditor/ckeditor5-icons" "48.0.0"
+    "@ckeditor/ckeditor5-merge-fields" "48.0.0"
+    "@ckeditor/ckeditor5-ui" "48.0.0"
+    "@ckeditor/ckeditor5-utils" "48.0.0"
+
 "@ckeditor/ckeditor5-find-and-replace@48.0.0":
   version "48.0.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-find-and-replace/-/ckeditor5-find-and-replace-48.0.0.tgz#569f661fabc530c3aec4f076e36882c03afe749d"
@@ -500,6 +512,21 @@
     "@ckeditor/ckeditor5-typing" "48.0.0"
     "@ckeditor/ckeditor5-ui" "48.0.0"
     "@ckeditor/ckeditor5-utils" "48.0.0"
+    es-toolkit "1.45.1"
+
+"@ckeditor/ckeditor5-merge-fields@48.0.0":
+  version "48.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-merge-fields/-/ckeditor5-merge-fields-48.0.0.tgz#b3d773733e6cf32881e093422e44d245e535ceff"
+  integrity sha512-c3sMS1ExZ9TzEvGa9FZh3AibUa7fAFko+HEKT8Mca0wUQENxAfjmAh93X6x6GdUEQ0/LC54f/jmT038yyZjGKg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "48.0.0"
+    "@ckeditor/ckeditor5-engine" "48.0.0"
+    "@ckeditor/ckeditor5-icons" "48.0.0"
+    "@ckeditor/ckeditor5-image" "48.0.0"
+    "@ckeditor/ckeditor5-mention" "48.0.0"
+    "@ckeditor/ckeditor5-ui" "48.0.0"
+    "@ckeditor/ckeditor5-utils" "48.0.0"
+    "@ckeditor/ckeditor5-widget" "48.0.0"
     es-toolkit "1.45.1"
 
 "@ckeditor/ckeditor5-minimap@48.0.0":
