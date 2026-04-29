@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -22,7 +22,115 @@
       </div>
 
       <div class="document-editor__editable-container">
-        <div class="document-editor__editable" contenteditable="true"></div>
+        <div class="document-editor__editable" contenteditable="true">
+          <p>
+            Some text.&nbsp;<span
+              class="placeholder placeholder-pointer ck-widget"
+              title="VARIÁVEL LIVRE"
+              data-name="VARIÁVEL LIVRE"
+              data-attr="empty"
+              data-value=""
+              data-is-fixed=""
+              data-is-solved=""
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >VARIÁVEL LIVRE</span
+            ><span
+              class="placeholder placeholder-pointer ck-widget"
+              title="VARIÁVEL LIVRE"
+              data-name="VARIÁVEL LIVRE"
+              data-attr="empty"
+              data-value=""
+              data-is-fixed=""
+              data-is-solved=""
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >VARIÁVEL LIVRE</span
+            >
+          </p>
+          <p>&nbsp;</p>
+          <p>Some text.&nbsp;</p>
+          <p>
+            <span
+              class="placeholder placeholder-pointer ck-widget"
+              title="VARIÁVEL LIVRE"
+              data-name="VARIÁVEL LIVRE"
+              data-attr="empty"
+              data-value=""
+              data-is-fixed=""
+              data-is-solved=""
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >VARIÁVEL LIVRE</span
+            >
+          </p>
+          <p>&nbsp;</p>
+          <p>Some text.&nbsp;</p>
+          <p>
+            <span
+              class="placeholder placeholder-pointer ck-widget"
+              title="VARIÁVEL LIVRE"
+              data-name="VARIÁVEL LIVRE"
+              data-attr="empty"
+              data-value=""
+              data-is-fixed=""
+              data-is-solved=""
+              data-is-block="0"
+              data-options=""
+              contenteditable="false"
+              >VARIÁVEL LIVRE</span
+            >
+          </p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                  <span
+                    class="placeholder placeholder-pointer ck-widget"
+                    title="VARIÁVEL LIVRE"
+                    data-name="VARIÁVEL LIVRE"
+                    data-attr="empty"
+                    data-value=""
+                    data-is-fixed=""
+                    data-is-solved=""
+                    data-is-block="0"
+                    data-options=""
+                    contenteditable="false"
+                    >VARIÁVEL LIVRE</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>
+                  <span
+                    class="placeholder placeholder-pointer ck-widget"
+                    title="VARIÁVEL LIVRE"
+                    data-name="VARIÁVEL LIVRE"
+                    data-attr="empty"
+                    data-value=""
+                    data-is-fixed=""
+                    data-is-solved=""
+                    data-is-block="0"
+                    data-options=""
+                    contenteditable="false"
+                    >VARIÁVEL LIVRE</span
+                  >
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -30,6 +138,7 @@
 
     <script type="module">
       import CustomDecoupledEditor from "../main.js";
+      import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
 
       CustomDecoupledEditor.create(
         document.querySelector(".document-editor__editable"),
@@ -41,16 +150,17 @@
               return saveData(editor.getData());
             },
           },
-        }
+        },
       )
         .then((editor) => {
+          CKEditorInspector.attach(editor);
+          window.sampleEditor = editor;
           const toolbarContainer = document.querySelector(
-            ".document-editor__toolbar"
+            ".document-editor__toolbar",
           );
           toolbarContainer.appendChild(editor.ui.view.toolbar.element);
           // CKEditorInspector.attach(editor);
           displayStatus(editor);
-          window.editor = editor;
         })
         .catch((err) => {
           console.error(err);
@@ -61,8 +171,6 @@
         return new Promise((resolve) => {
           setTimeout(() => {
             console.log("Saved");
-            console.log(data);
-
             resolve();
           }, 1000);
         });
@@ -72,7 +180,7 @@
       function displayStatus(editor) {
         const pendingActions = editor.plugins.get("PendingActions");
         const statusIndicator = document.querySelector(
-          "#snippet-autosave-status"
+          "#snippet-autosave-status",
         );
         pendingActions.on("change:hasAny", (evt, propertyName, newValue) => {
           if (newValue) {

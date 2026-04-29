@@ -76,6 +76,7 @@ function getDropdownItemsDefinitions(variables) {
         attr: "empty",
         is_fixed: false,
         is_solved: false,
+        is_block: false,
         value: null,
         options: null,
       },

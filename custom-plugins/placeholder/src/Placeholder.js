@@ -8,6 +8,10 @@ import PlaceholderEditing from "./PlaceholderEditing.js";
 import PlaceholderUI from "./PlaceholderUI.js";
 
 export default class Placeholder extends Plugin {
+  static get pluginName() {
+    return "Placeholder";
+  }
+
   static get requires() {
     return [PlaceholderEditing, PlaceholderUI];
   }

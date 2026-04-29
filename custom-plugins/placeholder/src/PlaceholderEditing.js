@@ -17,6 +17,10 @@ import PlaceholderOptionsView from "./PlaceholderOptionsView.js";
 import { nextPlaceholder } from "./PlaceholderUtils.js";
 
 export default class PlaceholderEditing extends Plugin {
+  static get pluginName() {
+    return "PlaceholderEditing";
+  }
+
   static get requires() {
     return [Widget];
   }
@@ -48,7 +52,7 @@ export default class PlaceholderEditing extends Plugin {
           (element.hasClass("placeholder") ||
             element.hasClass("placeholder-block"))
         ) {
-          this._openBalloon(data);
+          this.openBalloon(data);
           evt.stop();
         } else {
           this.closeBalloon();
@@ -69,59 +73,68 @@ export default class PlaceholderEditing extends Plugin {
     });
   }
 
-  _openBalloon(data) {
+  openBalloon(data) {
     const editor = this.editor;
 
     // Verifica se existe algum balloon aberto e fecha
-    this.closeBalloon();
+    // this.closeBalloon();
 
     const modelElement = editor.editing.mapper.toModelElement(data.target);
-    if (modelElement && modelElement.name === "placeholder") {
-      // Variaveis vazias/livres
-      if (modelElement.getAttribute("attr") === "empty") {
-        this.placeholderOptions = this._setPlaceholderInput(data);
-
-        // Fecha ballon/input qndo Enter é pressionado
-        this.placeholderOptions.keystrokes.set("Enter", (data, cancel) => {
-          // Encontra proxima variavel
-          this.closeBalloon();
-          setTimeout(function () {
-            nextPlaceholder(editor);
-          }, 100);
-          cancel();
-        });
-      }
-
-      // Variaveis fixas
-      else if (modelElement.getAttribute("isFixed")) {
-        return;
-      }
-
-      // Variaveis com opções
-      else {
-        this.placeholderOptions = this._setPlaceholderOptions(data);
-
-        // Close the panel on esc key press when the **actions have focus**.
-        this.placeholderOptions.keystrokes.set("Esc", (data, cancel) => {
-          this.closeBalloon();
-          cancel();
-        });
-      }
-
-      // Abre novo balloon
-      this._balloon.add({
-        view: this.placeholderOptions,
-        singleViewMode: true,
-        position: {
-          target: data.domTarget,
-        },
-      });
-
-      this.placeholderOptions.focus(modelElement.getAttribute("value"));
+    if (!modelElement) {
+      return;
     }
+
+    if (modelElement.name !== "placeholder") {
+      return;
+    }
+
+    // Variaveis fixas
+    if (modelElement.getAttribute("isFixed")) {
+      return;
+    }
+
+    // Variaveis vazias/livres
+    if (modelElement.getAttribute("attr") === "empty") {
+      this.placeholderOptions = this._setPlaceholderInput(data);
+
+      // Fecha ballon/input qndo Enter é pressionado
+      this.placeholderOptions.keystrokes.set("Enter", (data, cancel) => {
+        // Encontra proxima variavel
+        this.closeBalloon();
+        setTimeout(() => {
+          nextPlaceholder(editor);
+        }, 500);
+        cancel();
+      });
+    }
+
+    // Variaveis com opções
+    else {
+      this.placeholderOptions = this._setPlaceholderOptions(data);
+
+      // Close the panel on esc key press when the **actions have focus**.
+      this.placeholderOptions.keystrokes.set("Esc", (data, cancel) => {
+        this.closeBalloon();
+        cancel();
+      });
+    }
+
+    // Abre novo balloon
+    console.log("domTarget:", data.domTarget);
+
+    this._balloon.add({
+      view: this.placeholderOptions,
+      singleViewMode: true,
+      position: {
+        target: data.domTarget,
+      },
+    });
+
+    this.placeholderOptions.focus(modelElement.getAttribute("value"));
   }
 
   closeBalloon() {
+    // Close only the placeholder balloon
     if (this._balloon.hasView(this.placeholderOptions)) {
       this._balloon.remove(this.placeholderOptions);
     }
@@ -267,6 +280,109 @@ export default class PlaceholderEditing extends Plugin {
         const element = toWidget(placeholderView, viewWriter);
         return element;
       },
+    });
+
+    // Add attribute change listeners for dynamic view updates
+    conversion.for("editingDowncast").add((dispatcher) => {
+      // Listen for isSolved attribute changes
+      dispatcher.on(
+        "attribute:isSolved:placeholder",
+        (evt, data, conversionApi) => {
+          const modelElement = data.item;
+          const viewElement = conversionApi.mapper.toViewElement(modelElement);
+
+          if (viewElement) {
+            const viewWriter = conversionApi.writer;
+
+            // Get current attributes
+            const isSolved = data.attributeNewValue;
+            const isFixed = modelElement.getAttribute("isFixed");
+            const value = modelElement.getAttribute("value");
+            const name = modelElement.getAttribute("name");
+
+            // Update class
+            const newClass =
+              "placeholder" +
+              (isFixed ? "" : " placeholder-pointer") +
+              (isSolved ? " placeholder-solved" : "");
+            viewWriter.setAttribute("class", newClass, viewElement);
+
+            // Update data-is-solved
+            viewWriter.setAttribute("data-is-solved", isSolved, viewElement);
+
+            // Update text content based on solved state
+            const currentText = isSolved ? value : name;
+            const textNode = viewElement.getChild(0);
+            if (textNode) {
+              viewWriter.remove(textNode);
+              viewWriter.insert(
+                viewWriter.createPositionAt(viewElement, 0),
+                viewWriter.createText(currentText),
+              );
+            }
+          }
+        },
+      );
+
+      // Listen for value attribute changes
+      dispatcher.on(
+        "attribute:value:placeholder",
+        (evt, data, conversionApi) => {
+          const modelElement = data.item;
+          const viewElement = conversionApi.mapper.toViewElement(modelElement);
+
+          if (viewElement) {
+            const viewWriter = conversionApi.writer;
+
+            // Update data-value
+            viewWriter.setAttribute(
+              "data-value",
+              data.attributeNewValue,
+              viewElement,
+            );
+
+            // Update text content if solved
+            const isSolved = modelElement.getAttribute("isSolved");
+            if (isSolved) {
+              const textNode = viewElement.getChild(0);
+              if (textNode) {
+                viewWriter.remove(textNode);
+                viewWriter.insert(
+                  viewWriter.createPositionAt(viewElement, 0),
+                  viewWriter.createText(data.attributeNewValue),
+                );
+              }
+            }
+          }
+        },
+      );
+
+      // Listen for isFixed attribute changes
+      dispatcher.on(
+        "attribute:isFixed:placeholder",
+        (evt, data, conversionApi) => {
+          const modelElement = data.item;
+          const viewElement = conversionApi.mapper.toViewElement(modelElement);
+
+          if (viewElement) {
+            const viewWriter = conversionApi.writer;
+
+            // Get current attributes
+            const isSolved = modelElement.getAttribute("isSolved");
+            const isFixed = data.attributeNewValue;
+
+            // Update class
+            const newClass =
+              "placeholder" +
+              (isFixed ? "" : " placeholder-pointer") +
+              (isSolved ? " placeholder-solved" : "");
+            viewWriter.setAttribute("class", newClass, viewElement);
+
+            // Update data-is-fixed
+            viewWriter.setAttribute("data-is-fixed", isFixed, viewElement);
+          }
+        },
+      );
     });
 
     // Define upcast conversion:

@@ -124,7 +124,7 @@ export default class PlaceholderInputView extends ListView {
             isSolved: value ? 1 : "",
             value,
           },
-          modelElement
+          modelElement,
         );
       });
     });

@@ -51,9 +51,10 @@ class GeminiCommand extends Command {
       : `${selectedText}${variablesContext}`;
 
     const API_URL = editor.config.get("promptApiUrl");
+    const API_SESSION = editor.config.get("sessionToken");
 
-    if (!API_URL) {
-      console.error("Prompt API URL is missing.");
+    if (!API_URL || !API_SESSION) {
+      console.error("Prompt API URL or token is missing.");
       return;
     }
 
@@ -67,7 +68,7 @@ class GeminiCommand extends Command {
       }),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${editor.config.get("user")}`,
+        Authorization: `Bearer ${API_SESSION}`,
       },
     })
       .then(async (response) => {
@@ -118,7 +119,7 @@ class GeminiCommand extends Command {
               variables.forEach((variable) => {
                 const escapedAttr = variable.attr.replace(
                   /[.*+?^${}()|[\]\\]/g,
-                  "\\$&"
+                  "\\$&",
                 );
                 // Match exact {attr} format
                 const regex = new RegExp(`\\{${escapedAttr}\\}`, "g");
@@ -160,7 +161,7 @@ class GeminiCommand extends Command {
               // Insert the newly parsed content at the original position
               lastInsertedRange = editor.model.insertContent(
                 modelFragment,
-                insertPosition
+                insertPosition,
               );
 
               // update insertPosition to the start of the newly inserted content

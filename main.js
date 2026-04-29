@@ -252,7 +252,7 @@ export default class CustomDecoupledEditor extends DecoupledEditor {
           "editor-container",
           "editor-container_document-editor",
           "editor-container_include-fullscreen",
-          "main-container"
+          "main-container",
         ),
     },
     image: {
